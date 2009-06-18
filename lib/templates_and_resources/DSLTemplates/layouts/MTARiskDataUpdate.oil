@@ -1,0 +1,44 @@
+layout 21
+    columns
+
+        column 1
+
+        widget :logo
+        endwidget
+
+        widget :submit_panel
+
+            widget :page_title,{:title => 'MTA RISK DATA UPDATE'}
+            endwidget
+
+            widget :progress_bar,{:currentStep => '1',:step1 => :your_details_step_title,:step2 => :your_quote_step_title,:step3 => :payment_step_title }
+            endwidget
+
+            widget :extending_panel,{:title => 'Entities'}
+                #$ENTITIES$
+            endwidget
+
+            widget :extending_panel,{:title => 'Coverages'}
+                #$COVERAGES$
+            endwidget
+
+            widget :button_panel
+            endwidget
+
+        endwidget
+
+        endcolumn
+
+        column 2
+        endcolumn
+
+    endcolumns
+
+    footer
+      widget :sitemap
+      endwidget
+      widget :legal_notice, {:text => :legal_notice}
+      endwidget
+    endfooter
+
+endlayout

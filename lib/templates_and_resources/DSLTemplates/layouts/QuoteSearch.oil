@@ -1,0 +1,36 @@
+layout 21
+
+    columns
+
+        column 1
+
+            widget :logo
+            endwidget
+
+            widget :page_title, {:title => :search_page_title}
+            endwidget
+
+            widget :submit_panel
+                widget :extending_panel,{:title => :search_panel_title}
+                    widget :narration_text,{:text => :search_panel_text}
+                    endwidget
+
+                    entity :Insured,{:hide => 'TradeCode'}
+                    entity :Policy,{:hide => 'Date'}
+
+                    widget :button_panel
+                    endwidget
+                endwidget
+            endwidget
+
+        endcolumn
+
+        column 2
+        endcolumn
+
+    endcolumns
+
+    footer
+    endfooter
+
+endlayout

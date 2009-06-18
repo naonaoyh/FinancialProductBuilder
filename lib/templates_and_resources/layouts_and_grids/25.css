@@ -1,0 +1,49 @@
+
+body{font: 76% arial,sans-serif;}
+p{margin:0 10px 10px}
+a{display:block;color: #006;padding:10px}
+a.bold-normal {font-family: verdana, Arial, Helvetica, sans-serif ;color: #cc3333;text-decoration: none;font-weight:bold;}
+.medium {font-size: 70%;}
+.small {font-size: 60%;}
+.dl-footer-separater {color: #cdcdcd; text-align: center}
+div.footer p{margin:0;padding:5px 10px}
+div.footer a{display:inline;padding:0}
+
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            .header {
+                height: 90px;
+            /* Height of top section */
+            }
+            .columnWrapper {
+                float: left;
+                width: 100%;
+            }
+            .column2 {
+                margin: 0 225px 0 225px;
+            /* Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth */
+            }
+            .column1 {
+                float: left;
+                width: 225px;
+            /* Width of left column */
+                margin-left: -100%;
+            }
+            .column3 {
+                float: left;
+                width: 225px;
+            /* Width of right column */
+                margin-left: -225px;
+            /* Set left marginto -(RightColumnWidth) */
+            }
+            .footer {
+                clear: left;
+                width: 100%;
+                text-align: center;
+                padding: 4px 0;
+            }
+        
+        

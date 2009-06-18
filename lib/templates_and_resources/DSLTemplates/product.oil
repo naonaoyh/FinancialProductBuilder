@@ -1,0 +1,6 @@
+product :#$PRODUCT_NAME$
+ entities
+ endentities
+ coverages
+ endcoverages 
+endproduct

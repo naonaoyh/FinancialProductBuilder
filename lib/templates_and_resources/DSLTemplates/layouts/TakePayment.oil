@@ -1,0 +1,42 @@
+layout 21
+	
+    columns
+    
+    column 1
+
+        widget :logo
+        endwidget
+
+        widget :submit_panel
+
+            widget :page_title,{:title => :retailer_insurance_title}
+            endwidget
+
+            widget :progress_bar,{:currentStep => '3',:step1 => :your_details_step_title,:step2 => :your_quote_step_title,:step3 => :payment_step_title }
+            endwidget
+
+            widget :narration_text, {:text => :payment_intro_text}
+            endwidget
+
+            widget :extending_panel,{:title => :your_quote_panel_title}
+                entity :PremiumQuoteBreakdown
+            endwidget
+
+            #widget :payment_collector,{:title => :your-payment}
+            #endwidget
+
+            widget :button_panel
+            endwidget
+
+         endwidget
+    endcolumn
+	
+	column 2
+	endcolumn
+    
+    endcolumns
+    
+    footer
+    endfooter
+    
+endlayout 

@@ -1,0 +1,33 @@
+layout 21
+
+    columns
+
+        column 1
+
+            widget :logo
+            endwidget
+
+            widget :page_title, {:title => :save_confirm_page_title}
+            endwidget
+
+            widget :submit_panel
+
+                widget :extending_panel,{:title => :save_confirm_panel_title}
+                    widget :narration_text,{ :text => :save_confirm_panel_text}
+                    endwidget
+                endwidget
+
+                widget :button_panel
+                endwidget
+            endwidget
+        endcolumn
+
+        column 2
+        endcolumn
+
+    endcolumns
+
+    footer
+    endfooter
+
+endlayout

@@ -1,0 +1,5 @@
+#type, name, id, version, scheme
+dictionary 'XML','ShopPackageQuoteNBRq','110','100','ShopSkel100-01'
+
+#type, pre-xslt, post-xslt
+rating_engine 'RTE','Response'

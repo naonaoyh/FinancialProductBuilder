@@ -1,0 +1,33 @@
+layout 21
+    columns
+
+        column 1
+
+            widget :logo
+            endwidget
+
+            widget :submit_panel
+                widget :narration_text,{ :text => 'Search for Policy: Policy, Insured, Partial risk data - Display Results' }
+                endwidget
+
+                widget :narration_text,{ :text => 'Buttons to: Cancel, MTARiskDataUpdate via Update Policy' }
+                endwidget
+
+                #widget :search_panel
+                    entity :Insured,{:hide => 'TradeCode'}
+                    entity :Policy,{:hide => 'Date'}
+                #endwidget
+
+            endwidget
+
+        endcolumn
+
+        column 2
+        endcolumn
+
+    endcolumns
+
+    footer
+    endfooter
+
+endlayout

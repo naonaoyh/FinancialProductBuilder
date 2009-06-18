@@ -1,0 +1,25 @@
+html,body{margin:0;padding:0}
+body{font: 76% arial,sans-serif;text-align:center}
+p{margin:0 10px 10px}
+a{display:block;color: #006;padding:10px}
+a.bold-normal {font-family: verdana, Arial, Helvetica, sans-serif ;color: #cc3333;text-decoration: none;font-weight:bold;}
+.medium {font-size: 70%;}
+.small {font-size: 60%;}
+.dl-footer-separater {color: #cdcdcd; text-align: center}
+div.header{position:relative}
+div.header h1{height:75px;width: 1000px; line-height:80px;margin:2;padding-left:10px;background: #EEE;color: #79B30B}
+div.header a{position:absolute;right:0;top:23px}
+div.container{text-align:left}
+div.columnCentre p{line-height:0.4}
+div.columnCentre{width:600px; margin: 0 250px}
+div.columnSideLeft{background:transparent}
+div.columnSideLeft{float:left;width:250px;margin-left:-1000px}
+div.columnSideRight{background:transparent}
+div.columnSideRight a{padding:0}
+div.footer{background: #333;color: #FFF}
+div.footer p{margin:0;padding:5px 10px}
+div.footer a{display:inline;padding:0}
+div.footer{clear:left;width:1000px;margin:2;padding-left:10px;background: #EEE;color: #79B30B}
+div.container{width:1000px;margin:0 auto}
+div.wrapper{float:left;width:100%}
+div.columnSideRight{float:left;width:60px;margin-left:-200px}

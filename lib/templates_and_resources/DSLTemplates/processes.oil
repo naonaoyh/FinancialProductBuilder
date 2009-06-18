@@ -1,0 +1,48 @@
+#initial thoughts on this
+#I have moved away from state transition for now since state transition relates better to a holistic enterprise process view
+#which is probably too ambitious anyways
+channels
+ channel :default
+  processes
+    process :QNB
+        #the following causes the DSL interpreter to
+        #1) create a ruote process definition
+        #2) create RAILS controller actions that yield to pre-defined ruote participents
+
+        workflow_steps
+            step :ProductSelection,      {:template => :ProductSelection,:layout => :blank}
+            step :QuoteSearch,           {:template => :QuoteSearch,:layout => :blank}
+            step :PolicySearch,          {:template => :splash,:layout => :blank}
+            step :QNBRiskDataCollect,    {:template => :QNBRiskDataCollect,:layout => :blank}
+            step :MTARiskDataUpdate,     {:template => :MTARiskDataUpdate,:layout => :blank}
+            step :QuoteSummary,          {:template => :QuoteSummary,:layout => :blank}
+            step :DeclineRefer,          {:template => :ReviewDecline,:layout => :blank}
+            step :TakePayment,           {:template => :TakePayment,:layout => :blank}
+            step :ConfirmPayment,        {:template => :ConfirmPayment,:layout => :blank}
+            step :SaveConfirm,           {:template => :SaveConfirm,:layout => :blank}
+            step :CancelConfirm,         {:template => :CancelConfirm,:layout => :blank}
+            step :Errored,               {:template => :Errored,:layout => :blank}
+        endworkflow_steps
+
+        #the following defines validation leaps around the workflow
+        #it allows navigation buttons to be derived for use in each of the step templates
+        #i.e. buttons are automatically be created inside a button panel widget
+
+        valid_flows
+            flow :ProductSelection,      [:QNBRiskDataCollect, :QuoteSearch, :PolicySearch, :CancelConfirm]
+            flow :QuoteSearch,           [:SearchResult, :CancelConfirm]
+            flow :PolicySearch,          [:MTARiskDataUpdate, :CancelConfirm]
+            flow :QNBRiskDataCollect,    [:QuoteSummary, :CancelConfirm,:SaveConfirm]
+            flow :MTARiskDataUpdate,     [:QuoteSummary, :CancelConfirm,:SaveConfirm]
+            flow :QuoteSummary,          [:TakePayment, :CancelConfirm,:SaveConfirm]
+            flow :DeclineRefer,          [:ProductSelection, :close]
+            flow :TakePayment,           [:ConfirmPayment, :CancelConfirm]
+            flow :ConfirmPayment,        [:ProductSelection, :close]
+            flow :SaveConfirm,           [:ProductSelection, :close,:QuoteSearch]
+            flow :CancelConfirm,         [:ProductSelection, :close]
+            flow :Errored,               [:ProductSelection, :close]
+        endvalid_flows
+
+   endprocess
+  endprocesses
+endchannel

@@ -1,0 +1,48 @@
+layout 24
+
+	widget :splash_js_widget
+	endwidget
+
+	widget :splash_css_widget
+	endwidget
+
+    header
+      widget :logo
+      endwidget
+    endheader
+
+    columns
+
+    column 1
+      product_menu [:van, :tradesman, :businessfromhome, :residentialproperty, :commercialproperty, :shop, :officesurgery, :hotel, :pubrestaurant]
+    endcolumn
+
+    column 2
+      panel
+      	widget :carousel
+        endwidget
+      endpanel
+      panel
+      	panel :Percent55
+	  teaser :crossSellPersonalLines
+	endpanel
+	panel :Right
+	  teaser :goodDealbetter
+	endpanel
+      endpanel
+    endcolumn
+
+    column 3
+      teaser :crossSellCommercialLines
+    endcolumn
+
+    endcolumns
+
+    footer
+      widget :sitemap
+      endwidget
+      widget :legal_notice, {:title => :legal_notice}
+      endwidget
+    endfooter
+
+endlayout 

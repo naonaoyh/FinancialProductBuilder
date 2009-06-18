@@ -1,0 +1,65 @@
+
+body{font: 76% Arial, Helvetica, sans-serif}
+p{margin:0 10px 10px}
+a{display:block;color: #006;padding:10px}
+a.bold-normal {font-family: verdana, Arial, Helvetica, sans-serif ;color: #cc3333;text-decoration: none;font-weight:bold;}
+.medium {font-size: 70%;}
+.small {font-size: 60%;}
+.dl-footer-separater {color: #cdcdcd; text-align: center}
+div.footer p{margin:0;padding:5px 10px}
+div.footer a{display:inline;padding:0}
+
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            .container {
+                margin: 0 auto;
+                width: 1022px;
+            }
+            .columnWrapper {
+                margin-bottom: 0px;
+                overflow: auto;
+            /* Paul O Brien Fix for IE www.pmob.co.uk */
+                width: 100%
+            }
+            .header {
+                color: #333;
+                width: 1002px;
+                padding: 10px;
+                height: 100px;
+                margin: 10px 0px 0px 0px;
+            }
+            .mini-header {
+                color: #333;
+                padding: 10px;
+                margin: 0px 0px 0px 0px;
+            }
+            .column1 {
+                float: left;
+                color: #333;
+            /* border: 1px solid red; */
+                margin: 10px;
+                padding: 0px;
+                width: 753px;
+                display: inline;
+                position: relative;
+            }
+            .column2 {
+                display: inline;
+                color: #333;
+                margin: 10px;
+                padding: 0px;
+                width: 225px;
+                float: right;
+            }
+            .footer {
+                width: 1002px;
+                clear: both;
+                color: #333;
+                margin: 0px 0px 10px 0px;
+                padding: 10px;
+            }
+            
+        
+        

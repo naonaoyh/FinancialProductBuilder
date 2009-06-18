@@ -1,0 +1,40 @@
+layout 21
+	
+    columns
+    
+    column 1
+
+        widget :logo
+        endwidget
+
+        widget :submit_panel
+
+            widget :page_title, {:title => 'QUOTE SUMMARY'}
+            endwidget
+
+            widget :progress_bar,{:currentStep => '2',:step1 => :your_details_step_title,:step2 => :your_quote_step_title,:step3 => :payment_step_title }
+            endwidget
+
+            widget :extending_panel,{:title => 'Entities'}
+                #$ENTITIES$
+            endwidget
+
+            widget :extending_panel,{:title => 'Coverages'}
+                #$COVERAGES$
+            endwidget
+
+            widget :button_panel
+                endwidget
+
+            endwidget
+    endcolumn
+	
+	column 2
+	endcolumn
+    
+    endcolumns
+    
+    footer
+    endfooter
+    
+endlayout 
