@@ -51,7 +51,6 @@ class ProductConfig
       e.fields.each do |f|
         ename=""
         ename = ":#{e.name}," if e.name != topLevelName
-        puts "pname=#{pname(e,",",topLevelName)},ename=#{ename}"
         text << "\tuse "+"#{pname(e,",",topLevelName)}"+"#{ename}:#{f[:name]}\n"
       end
     end 
