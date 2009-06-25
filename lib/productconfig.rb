@@ -23,7 +23,7 @@ class ProductConfig
 
     (dataelements.collect {|x| x if x.type == "coverages"}).compact.each do |e|
       text = "coverage :#{e.name}\n"
-      text << getFields(e,1,e.name)
+      text << getFields(nil,e,1,e.name)
       text << "endcoverage"
       a = Array.new
       a.push e.name
@@ -33,7 +33,7 @@ class ProductConfig
 
     (dataelements.collect {|x| x if x.type == "entities"}).compact.each do |e|
       text = "entity :#{e.name}\n"
-      text << getFields(e,1,e.name)
+      text << getFields(nil,e,1,e.name)
       text << "endentity"
       a = Array.new
       a.push e.name
@@ -44,19 +44,20 @@ class ProductConfig
     result
   end
 
-  def getFields(e,depth,topLevelName)
+  def getFields(parent,e,depth,topLevelName)
     text = ""
-
+    e.parent = parent if parent
     if (e.fields and e.fields.length > 0)
       e.fields.each do |f|
         ename=""
         ename = ":#{e.name}," if e.name != topLevelName
-        text << "\tuse "+pname(e,",")+"#{ename}:#{f[:name]}\n"
+        puts "pname=#{pname(e,",")},ename=#{ename}"
+        text << "\tuse "+"#{ename}:#{f[:name]}\n"
       end
     end 
     if (e.children and e.children.length > 0)
       e.children.each do |c|
-        text << getFields(c,depth+1,topLevelName)
+        text << getFields(e,c,depth+1,topLevelName)
       end
     end
     
