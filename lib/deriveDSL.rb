@@ -74,7 +74,7 @@ dictionaryEntries = modelData.genDict(elements)
 # in .../libraries/coverages
 # in .../libraries/entities
 resultDMFiles.each do |k,v|
-  File.open(File.join(OUTPUT, ORG,'git','libraries',"#{v[3]}","#{k}DataModel.rb"), 'w') {|f| f.write(v[0]) }
+  File.open(File.join(OUTPUT, ORG,'git','libraries',"#{v[3]}","#{k}EntityModel.rb"), 'w') {|f| f.write(v[0]) }
   File.open(File.join(OUTPUT, ORG,'git','libraries',"#{v[3]}","#{k}NodeName.rb"), 'w') {|f| f.write(v[1]) }
   File.open(File.join(OUTPUT, ORG,'git','libraries',"#{v[3]}","#{k}PropertyHash"), 'w') {|f| f.write(v[2]) }
 end

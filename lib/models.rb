@@ -3,17 +3,18 @@ require 'Element'
 
 class Models
   def generateFiles(result)
+    list = (result.collect {|x| x if x.coverage}).compact
     @result = Hash.new
     #collect statement reduces the list to a list of coverages only
     @entitycoverage = ""
     @entityModel = ""
     @nodeName = ""
-    createClass((result.collect {|x| x if x.coverage}).compact)
+    createClass(nil,list)
 
     @entitycoverage = ""
     @propertyHash = ""
     @fieldDECs=""
-    createHash((result.collect {|x| x if x.coverage}).compact)
+    createHash(nil,list)
 
     @result
   end
@@ -21,13 +22,14 @@ class Models
   def genDict(result)
     @distinctLabels = Hash.new
     @dictionary = ""
-    createDictionaryEntries(result)
+    #createDictionaryEntries(result)
     @dictionary
   end
 
   # -- build entity model and propertyhashes files to plug into IAB library
-  def createHash(list)
+  def createHash(parent,list)
     list.each do |e|
+      e.parent = parent if parent
       if (e.coverage)
         @entitycoverage = e.name
       end
@@ -36,27 +38,13 @@ class Models
           @propertyHash << "#{fieldline(f)}\n"
           @fieldDECs << "#{fieldDEC(e,f)}\n"
         end
-      createHash(e.children) if e.children.length > 0
+      createHash(e,e.children) if e.children.length > 0
       if (e.coverage)
         @result[e.name.to_sym][2] = @propertyHash + @fieldDECs
         @result[e.name.to_sym][3] = e.type
         @propertyHash = ""
         @fieldDECs = ""
       end
-    end
-  end
-
-  def createDictionaryEntries(list)
-    list.each do |e|
-      fieldPrefix = "'#{pname(e)}#{e.name}".downcase
-      e.fields.each do |f|
-        key = "#{pname(e)}#{e.name}#{f[:name]}"
-        if !@distinctLabels.has_key?(key.to_sym)
-          @dictionary << "\t\t\t#{fieldPrefix}_#{f[:name].downcase}' => '#{f[:name]}',\n"
-          @distinctLabels[key.to_sym] = 1
-        end
-      end
-      createDictionaryEntries(e.children) if e.children.length > 0
     end
   end
 
@@ -71,21 +59,28 @@ class Models
     "#{pname(e)}#{e.name}#{f[:name]}: !map:HashWithIndifferentAccess\n  xpath: \"#{pname2(e,'/')}#{e.name}/#{f}\""
   end
 
-  def createClass(list)
+  def createClass(parent,list)
     list.each do |e|
+      e.parent = parent if parent
       if (e.coverage)
         @entitycoverage = e.name
       end
+      #build up the node name clauses
       @nodeName << "#{classline(e)}\n"
       nodeclauses(e.name)
 
       @entityModel << "#{classline(e)}\n"
+      #puts "classline for #{e.name} is #{classline(e)}"
+      #iterate around the children and build the entity model
       e.children.each do |c|
+        c.parent = e
         @entityModel << "#{childline(c)}\n"
       end
       @entityModel << "end\n"
       @nodeName << "end\n"
-      createClass(e.children) if e.children.length > 0
+
+      #now take the children in turn
+      createClass(e,e.children) if e.children.length > 0
       if (e.coverage)
         @result[e.name.to_sym] = []
         @result[e.name.to_sym][0] = @entityModel
@@ -122,8 +117,22 @@ class Models
       pname = parent.name + delimiter + pname
       parent = parent.parent
     end
-    pname =  @entitycoverage + delimiter + pname if !e.coverage
+    pname =  pname if !e.coverage
     pname
+  end
+
+  def createDictionaryEntries(list)
+    list.each do |e|
+      fieldPrefix = "'#{pname(e)}#{e.name}".downcase
+      e.fields.each do |f|
+        key = "#{pname(e)}#{e.name}#{f[:name]}"
+        if !@distinctLabels.has_key?(key.to_sym)
+          @dictionary << "\t\t\t#{fieldPrefix}_#{f[:name].downcase}' => '#{f[:name]}',\n"
+          @distinctLabels[key.to_sym] = 1
+        end
+      end
+      createDictionaryEntries(e.children) if e.children.length > 0
+    end
   end
 end
 
