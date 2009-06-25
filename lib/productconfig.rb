@@ -51,8 +51,8 @@ class ProductConfig
       e.fields.each do |f|
         ename=""
         ename = ":#{e.name}," if e.name != topLevelName
-        puts "pname=#{pname(e,",")},ename=#{ename}"
-        text << "\tuse "+"#{ename}:#{f[:name]}\n"
+        puts "pname=#{pname(e,",",topLevelName)},ename=#{ename}"
+        text << "\tuse "+"#{pname(e,",",topLevelName)}"+"#{ename}:#{f[:name]}\n"
       end
     end 
     if (e.children and e.children.length > 0)
@@ -64,11 +64,11 @@ class ProductConfig
     text
   end
 
-   def pname(e,delimiter)
+   def pname(e,delimiter,topLevelName)
     pname = ""
     parent = e.parent
     while parent
-      pname = ":" + parent.name + delimiter + pname
+      pname = ":" + parent.name + delimiter + pname if (parent.name != topLevelName)
       parent = parent.parent
     end
     pname
