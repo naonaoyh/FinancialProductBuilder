@@ -2,12 +2,10 @@
 # You can redistribute it and/or modify it under the same terms as Ruby.
 #
 require 'Marshaller'
-require 'helpers/pb_helper'
 
 class PbBaseController < ApplicationController
   
   include Marshaller
-  include PbHelper
   
   def products
     product = params['product']
