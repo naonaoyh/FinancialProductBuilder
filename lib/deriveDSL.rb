@@ -54,7 +54,8 @@ tree.makeDirTree(OUTPUT,ORG,hoo[1])
 
 open("#{INPUT}/#{DM}") {|f| @contents = f.read }
 dsl = @contents.to_s
-elements = DataModelInterpreter.execute(dsl) #elements is an array of 'Element' objects
+result = DataModelInterpreter.execute(dsl)
+elements = result[0] #elements is an array of 'Element' objects
 
 # Element structure is:-
 # isacoverage? - indicates whether top level - really should be named 'top level coverage or entity?'
